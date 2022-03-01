@@ -6,36 +6,25 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active text-danger" aria-current="page" href="#">Accueil</a>
+          <!-- <a class="nav-link active text-danger" aria-current="page" href="#">Accueil</a> -->
+          <router-link to="/" class="nav-link active text-danger">Home</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link active text-danger" href="#">Favoris</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active text-danger">Film à voir</a>
+          <!-- <a class="nav-link active text-danger" href="#">Favoris</a> -->
+          <router-link to="/favoris" class="nav-link active text-danger">Favoris</router-link>
         </li>
       </ul>
       <form class="d-flex" v-on:submit.prevent>
-        <input id="inputValue" class="form-control me-2 bg-dark border-danger text-light" type="search" placeholder="Search" v-model="searchMovie">
+        <input id="inputValue" class="form-control me-2 bg-dark border-danger text-light" type="search" 
+        placeholder="Search" >
         <button class="btn btn-outline-danger bg-dark " type="submit" @click="loadData()">Search</button>
       </form>
+
+
     </div>
   </div>
-<!-- <div v-for="result of results" v-bind:key="result"></div> -->
 </nav>
-<div class="container d-flex justify-content-around">
-  <div class="row ">
-<div class="card bg-dark col-3 p-2 m-2 " style="width: 18rem;" v-for="movie of movies" v-bind:key="movie" >
-  <img class="card-img-top" :src="'https://image.tmdb.org/t/p/w500/'+movie.backdrop_path" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{movie.title}}</h5>
-    <!-- <p class="card-text">{{movie.overview}}</p> -->
-    <a href="#" class="btn btn-danger btn-sm">Ajouter au favoris</a>
-  </div>
-</div>
-  </div>
 
-</div>
 
 
     <!-- <nav>
@@ -57,8 +46,7 @@ export default {
   name: 'App',
   data: function () {
     return {
-      searchMovie:"",
-      movies:[],
+      
     }
   },
   components: {
@@ -68,13 +56,11 @@ export default {
     loadData: function () {
 
       console.log(this.searchMovie)
+      this.$store.commit('setSearchMovie', document.getElementById('inputValue').value)
+      this.$store.dispatch('searchMovies')
 
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=15eb3458877c356fb0e0ddb7075d8f9f&query=${this.searchMovie}&language=fr-FR`
-      )
-        .then((response) => response.json())
-        .then((response) => {this.movies = response.results 
-        console.log(this.movies)});
+
+
     }
   },
 }
