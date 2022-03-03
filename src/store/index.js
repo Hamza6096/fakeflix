@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     searchMovie:"",
-      movies:[],
+    movies: [],
+      page:[],
   },
   getters: {
   },
@@ -25,10 +26,10 @@ export default new Vuex.Store({
       )
         .then((response) => response.json())
         .then((response) => {
-          console.log(this.movies)
-          //this.movies = response.results 
+          console.log(this.state.movies)
           context.commit('setMovies', response.results)
         });
-    }
+    },
+    
   }
 })

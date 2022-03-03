@@ -20,17 +20,10 @@
         <button class="btn btn-outline-danger bg-dark " type="submit" @click="loadData()">Search</button>
       </form>
 
-
     </div>
   </div>
 </nav>
 
-
-
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
     <router-view />
   </div>
 </template>
@@ -54,13 +47,9 @@ export default {
   },
    methods: {
     loadData: function () {
-
-      console.log(this.searchMovie)
       this.$store.commit('setSearchMovie', document.getElementById('inputValue').value)
       this.$store.dispatch('searchMovies')
-
-
-
+      console.log(this.$store.state.searchMovie)
     }
   },
 }
