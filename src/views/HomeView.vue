@@ -16,7 +16,7 @@
 
     <div class="container d-flex justify-content-around">
       <div class="row">
-        <p>resultat pour le film : {{ $store.state.searchMovie }}</p>
+        <p class="text-danger">resultat pour la recherche : {{ $store.state.searchMovie }}</p>
 
         <div
           class="card bg-dark col-3 p-2 m-2"
@@ -46,7 +46,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 
@@ -57,12 +56,6 @@ export default {
     Hooper,
     Slide,
     HooperPagination,
-  },
-  data: function () {
-    return {
-
-    };
-    }
-
+  }
 };
 </script>

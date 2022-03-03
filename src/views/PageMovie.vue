@@ -1,10 +1,10 @@
 
 <template>
-  <div class="container">
+  <div class="container" v-if="movie !== null">
     <h1>PageMovie en construction</h1>
 
     <div class="film">
-      <video controls :src="`${video}`">La description alternative</video>
+      <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${video.results[0].key}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <div class="card mb-3 bg-dark" style="max-width: 70%">
@@ -50,45 +50,26 @@
 </template>
 
 <script>
-
+import fetching from "@/mixins/FetchMovies";
 
 export default {
   name: "PageMovie",
-  data: function () {
-    return {
-      movie: null,
-      video: null,
-    };
-  },
+  mixins: [fetching],
   props: {},
   created: function () {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${this.$route.params.id}?api_key=15eb3458877c356fb0e0ddb7075d8f9f&language=fr-FR`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        // console.log(response);
-        this.movie = response;
-      });
-    fetch(
-      `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?api_key=15eb3458877c356fb0e0ddb7075d8f9f&language=fr-FR`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        // console.log(response);
-        this.video = response;
-      });
+    //mixins
+    this.MovieVideofetch();
   },
   methods: {
     addStorage: function () {
       localStorage.setItem("STORAGE", JSON.stringify(`${this.movie.id}`));
       console.log(localStorage);
-      this.$store.state.idFav = JSON.parse(localStorage.getItem('STORAGE'));
+      this.$store.state.idFav = JSON.parse(localStorage.getItem("STORAGE"));
       console.log(this.$store.state.idFav);
       this.$store.state.storages.push(this.$store.state.idFav);
       console.log(this.$store.state.storages);
     },
-  }
+  },
 };
 </script>
 
