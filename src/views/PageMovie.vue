@@ -1,3 +1,4 @@
+
 <template>
   <div class="container">
     <h1>PageMovie en construction</h1>
@@ -6,7 +7,7 @@
       <video controls :src="`${video}`">La description alternative</video>
     </div>
 
-    <div class="card mb-3 bg-dark" style="max-width: 540px">
+    <div class="card mb-3 bg-dark" style="max-width: 70%">
       <div class="row g-0">
         <div class="col-md-4">
           <img
@@ -49,14 +50,14 @@
 </template>
 
 <script>
+
+
 export default {
   name: "PageMovie",
   data: function () {
     return {
       movie: null,
       video: null,
-      idFav: [],
-      Storage: [],
     };
   },
   props: {},
@@ -66,7 +67,7 @@ export default {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.movie = response;
       });
     fetch(
@@ -74,20 +75,20 @@ export default {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.video = response;
       });
   },
   methods: {
     addStorage: function () {
-      localStorage.setItem("Storage", JSON.stringify(`${this.movie.id}`));
+      localStorage.setItem("STORAGE", JSON.stringify(`${this.movie.id}`));
       console.log(localStorage);
+      this.$store.state.idFav = JSON.parse(localStorage.getItem('STORAGE'));
+      console.log(this.$store.state.idFav);
+      this.$store.state.storages.push(this.$store.state.idFav);
+      console.log(this.$store.state.storages);
     },
-    // saveStorage() {
-    //   const parsed = JSON.stringify(this.Storage);
-    //   localStorage.setItem("Storage", parsed);
-    // },
-  },
+  }
 };
 </script>
 

@@ -8,6 +8,8 @@ export default new Vuex.Store({
     searchMovie:"",
     movies: [],
       page:[],
+      idFav:[],
+      storages:[],
   },
   getters: {
   },
@@ -26,7 +28,7 @@ export default new Vuex.Store({
       )
         .then((response) => response.json())
         .then((response) => {
-          console.log(this.state.movies)
+          // console.log(this.state.movies)
           context.commit('setMovies', response.results)
         });
     },

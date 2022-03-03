@@ -1,5 +1,19 @@
 <template>
   <div class="home">
+
+    <hooper :itemsToShow="6">
+      <slide v-for="movie of $store.state.movies" :key="movie.id">
+        <img
+          class="card-img-top"
+          :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+          alt="imageLink movie"
+        />
+      </slide>
+
+      <hooper-pagination slot="hooper-addons"></hooper-pagination>
+    </hooper>
+
+
     <div class="container d-flex justify-content-around">
       <div class="row">
         <p>resultat pour le film : {{ $store.state.searchMovie }}</p>
@@ -26,7 +40,7 @@
         </div>
       </div>
     </div>
-    <footer><h1 class="text-danger pb-3">FAKEFLIX</h1></footer>
+
     <HelloWorld />
   </div>
 </template>
@@ -34,11 +48,15 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 
 export default {
   name: "HomeView",
   components: {
     HelloWorld,
+    Hooper,
+    Slide,
+    HooperPagination,
   },
   data: function () {
     return {
