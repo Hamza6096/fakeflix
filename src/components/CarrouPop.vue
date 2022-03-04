@@ -1,14 +1,16 @@
 <template>
   <div class="carrousel">
-          <hooper :itemsToShow="6">
-      <slide v-for="movie of $store.state.movies" :key="movie.id">
-          <router-link :to="`/page/${movie.id}`">
-            <img
-              class="card-img-top"
-              :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-              alt="imageLink movie"
-            />
-          </router-link>
+          <p class="fw-bold">Film les plus Populaires</p>
+          
+    <hooper :itemsToShow="6">
+      <slide v-for="popular of $store.state.populars" :key="popular.id">
+        <router-link :to="`/page/${popular.id}`">
+          <img
+            class="card-img-top"
+            :src="`https://image.tmdb.org/t/p/w500/${popular.poster_path}`"
+            alt="imageLink movie"
+          />
+        </router-link>
       </slide>
 
       <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -25,7 +27,10 @@ export default {
     Slide,
     HooperPagination,
   },
-  props: {}
+  props: {},
+    created: function () {
+      this.$store.dispatch("getPopular");
+  },
 };
 </script>
 

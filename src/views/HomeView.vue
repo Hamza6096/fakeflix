@@ -3,7 +3,9 @@
     <CarrouPop />
     <div class="container d-flex justify-content-around">
       <div class="row">
-        <p class="text-danger">resultat pour la recherche : {{ $store.state.searchMovie }}</p>
+        <p class="text-danger fw-bold pt-2" v-if="$store.state.searchMovie !== ''">
+          resultat pour la recherche : {{ $store.state.searchMovie }}
+        </p>
 
         <div
           class="card bg-dark col-3 p-2 m-2"
@@ -21,28 +23,20 @@
 
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
-            <!-- <p class="card-text">{{movie.overview}}</p> -->
-
           </div>
         </div>
       </div>
     </div>
-
-    <HelloWorld />
   </div>
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
-import CarrouPop from '@/components/CarrouPop.vue';
-
+import CarrouPop from "@/components/CarrouPop.vue";
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
     CarrouPop,
-
-  }
+  },
 };
 </script>

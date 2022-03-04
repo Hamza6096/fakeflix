@@ -1,48 +1,9 @@
 <template>
   <div id="app" class="">
-    <header><h1 class="text-danger pt-3">FAKEFLIX</h1></header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark mb-3">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul
-            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-            style="--bs-scroll-height: 100px"
-          >
-            <li class="nav-item">
-              <router-link to="/" class="nav-link active text-danger"
-                >Home</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link to="/favoris" class="nav-link active text-danger"
-                >Favoris</router-link
-              >
-            </li>
-          </ul>
-          <form class="d-flex" v-on:submit.prevent>
-            <input
-              id="inputValue"
-              class="form-control me-2 bg-dark border-danger text-light"
-              type="search"
-              placeholder="Search"
-            />
-            <button
-              class="btn btn-outline-danger bg-dark"
-              type="submit"
-              @click="loadData()"
-            >
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
-
-
+    <HeaderComp />
     <router-view />
-        <footer><h1 class="text-danger pb-3" >FAKEFLIX</h1></footer>
+    <HelloWorld />
   </div>
-  
 </template>
 
 
@@ -51,7 +12,8 @@
 //import func from 'vue-editor-bridge'
 // @ is an alias to /src
 //import HelloWorld from '@/components/HelloWorld.vue'
-
+import HeaderComp from "@/components/HeaderComp.vue";
+import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "App",
@@ -59,17 +21,8 @@ export default {
     return {};
   },
   components: {
-
-  },
-  methods: {
-    loadData: function () {
-      this.$store.commit(
-        "setSearchMovie",
-        document.getElementById("inputValue").value
-      );
-      this.$store.dispatch("searchMovies");
-      // console.log(this.$store.state.searchMovie);
-    },
+    HeaderComp,
+    HelloWorld
   },
 };
 </script>
@@ -91,5 +44,4 @@ nav {
 nav a {
   font-weight: bold;
 }
-
 </style>

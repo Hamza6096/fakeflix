@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import FavorisView from '../views/FavorisView.vue'
 import PageMovie from '../views/PageMovie.vue'
+import FormToken from '../views/FormToken.vue'
+
 
 Vue.use(VueRouter)
 
@@ -21,6 +23,11 @@ const routes = [
     path: '/page/:id',
     name: 'page',
     component: PageMovie
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: FormToken
   },
 ]
 

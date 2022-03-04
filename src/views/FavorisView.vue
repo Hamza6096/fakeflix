@@ -5,19 +5,19 @@
         <div
           class="card bg-dark col-3 p-2 m-2"
           style="width: 18rem"
-          v-for="storage of $store.state.storages"
-          v-bind:key="storage.id"
+          v-for="singleMovie of this.singleMovies"
+          v-bind:key="singleMovie.id"
         >
 
             <img
               class="card-img-top"
-              :src="`https://image.tmdb.org/t/p/w500/${storage.poster_path}`"
+              :src="`https://image.tmdb.org/t/p/w500/${singleMovie.poster_path}`"
               alt="imageLink movie"
             />
 
 
           <div class="card-body">
-            <h5 class="card-title">{{ storage.title }}</h5>
+            <h5 class="card-title">{{ singleMovie.title }}</h5>
 
 
           </div>
@@ -26,3 +26,16 @@
     </div>
   </div>
 </template>
+<script>
+import fetching from "@/mixins/FetchMovies";
+
+export default {
+  name: "FavoriteView",
+  mixins: [fetching],
+  props: {},
+  created: function () {
+    //mixins
+    this.MovieVideofetch();
+  }
+};
+</script>
