@@ -1,19 +1,6 @@
 <template>
   <div class="home">
-
-    <hooper :itemsToShow="6">
-      <slide v-for="movie of $store.state.movies" :key="movie.id">
-        <img
-          class="card-img-top"
-          :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-          alt="imageLink movie"
-        />
-      </slide>
-
-      <hooper-pagination slot="hooper-addons"></hooper-pagination>
-    </hooper>
-
-
+    <CarrouPop />
     <div class="container d-flex justify-content-around">
       <div class="row">
         <p class="text-danger">resultat pour la recherche : {{ $store.state.searchMovie }}</p>
@@ -47,15 +34,15 @@
 
 <script>
 import HelloWorld from "@/components/HelloWorld.vue";
-import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
+import CarrouPop from '@/components/CarrouPop.vue';
+
 
 export default {
   name: "HomeView",
   components: {
     HelloWorld,
-    Hooper,
-    Slide,
-    HooperPagination,
+    CarrouPop,
+
   }
 };
 </script>

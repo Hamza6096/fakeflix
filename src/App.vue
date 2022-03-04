@@ -9,13 +9,11 @@
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item">
-              <!-- <a class="nav-link active text-danger" aria-current="page" href="#">Accueil</a> -->
               <router-link to="/" class="nav-link active text-danger"
                 >Home</router-link
               >
             </li>
             <li class="nav-item">
-              <!-- <a class="nav-link active text-danger" href="#">Favoris</a> -->
               <router-link to="/favoris" class="nav-link active text-danger"
                 >Favoris</router-link
               >
