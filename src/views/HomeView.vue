@@ -3,14 +3,14 @@
     <CarrouPop />
     <div class="container d-flex justify-content-around">
       <div class="row">
-        <p class="text-danger fw-bold pt-2" v-if="$store.state.searchMovie !== ''">
-          resultat pour la recherche : {{ $store.state.searchMovie }}
+        <p class="text-danger fw-bold pt-2" v-if="searchMovie !== ''">
+          resultat pour la recherche : {{ searchMovie }}
         </p>
 
         <div
           class="card bg-dark col-3 p-2 m-2"
           style="width: 18rem"
-          v-for="movie of $store.state.movies"
+          v-for="movie of movies"
           v-bind:key="movie.id"
         >
           <router-link :to="`/page/${movie.id}`">
@@ -32,11 +32,13 @@
 
 <script>
 import CarrouPop from "@/components/CarrouPop.vue";
+import { mapState } from 'vuex'
 
 export default {
   name: "HomeView",
   components: {
     CarrouPop,
   },
+  computed: mapState(["searchMovie", "movies"])
 };
 </script>

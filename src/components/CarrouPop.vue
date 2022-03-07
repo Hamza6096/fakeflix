@@ -2,7 +2,7 @@
   <div class="carrousel">
           <p class="fw-bold">Film les plus Populaires</p>
           
-    <hooper :itemsToShow="6">
+    <hooper :itemsToShow="6" :infiniteScroll="true">
       <slide v-for="popular of $store.state.populars" :key="popular.id">
         <router-link :to="`/page/${popular.id}`">
           <img

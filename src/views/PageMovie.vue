@@ -4,7 +4,7 @@
     <div class="videoAndSingle col-10 d-flex flex-column align-items-center">
           <div class="film" v-if="video !== null">
       <iframe
-        width="600"
+        width="750"
         height="315"
         :src="`https://www.youtube.com/embed/${video.results[0].key}`"
         title="YouTube video player"
@@ -14,7 +14,7 @@
       ></iframe>
     </div>
 
-      <div class="singleMovie ">
+
       <div class="card mb-3 bg-dark pb-2" style="max-width: 70%">
         <div class="row g-0">
           <div class="col-md-4">
@@ -54,11 +54,11 @@
           </div>
         </div>
       </div>
-      </div>
+
     </div>
-    <div class="col-2">
-      <hooper :vertical="true" style="height: 400px" :itemsToShow="1.5" :centerMode="true">
-  <slide v-for="popular of $store.state.populars" :key="popular.id">
+    <div class="col-2 mt-5 pt-5">
+      <hooper :vertical="true" style="height: 500px" :itemsToShow="1.5" :centerMode="true">
+  <slide class="border" v-for="popular of $store.state.populars" :key="popular.id">
         <router-link :to="`/page/${popular.id}`">
           <img
             class="card-img-top"
